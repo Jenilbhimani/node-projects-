@@ -14,10 +14,15 @@ mongoose.connect('mongodb://localhost:27017/skillqode',{
     useUnifiedTopology: true
 });
 
-app.get("/insert",(req, res)=>{
-    const result =User.insertMany(data.users)
-    res.send(result);
-})
+// app.get("/insert",(req, res)=>{
+//     const result =User.insertMany(data.users)
+//     res.send(result);
+// })
+app.get("/user",(req, res)=>{
+    User.find(req.query).then((data)=>{
+        res.json(data);
+    });
+});
 
 // assgin the port number 
 const port=process.env.PORT || 3000;
